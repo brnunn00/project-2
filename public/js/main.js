@@ -233,7 +233,7 @@ $(document).ready(function () {
     function renderEmpty() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert alert-danger");
-        alertDiv.text("You must create a BABY (again).");
+        alertDiv.text("You must add events (again).");
         babyContainer.append(alertDiv);
     }
 
