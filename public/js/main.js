@@ -39,7 +39,11 @@ $(document).ready(function () {
 
     $('body').on('click', '#sleepDetailedLogSubmit', function () {
         event.preventDefault();
+<<<<<<< HEAD
         postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+=======
+        postManualSleep($('#sleepType').val(),$('#sleepType').val() === 'Nap' ? 2 : 8, moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+>>>>>>> 6553ff74558399500ee96bfaeb715b945b004a2b
     });
 
     $('body').on('click', '#feedingDetailedLogSubmit', function () {
@@ -66,7 +70,7 @@ $(document).ready(function () {
 
     function postManualChange(typeOfChange, createdDateTime){
         $.post('/api/quicklog', {
-            eventName: 'Feeding',
+            eventName: 'Diaper Change',
             babyId: urlParm
         }).then(function (data) {
             console.log("TCL: EVENT data: ", data)

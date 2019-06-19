@@ -38,9 +38,9 @@ function createBabyRowSelector(bbData){
     var newTr = $("<tr>");
     newTr.data("babe", bbData.id);
     var eventAt = $("<td>");
-    if (bbData.EventDetails[0] != undefined && bbData.EventDetails[0].time_created != '' && bbData.EventDetails[0].time_created != undefined){
+    if (bbData.EventDetails[0] != undefined && bbData.EventDetails[0].createdAt != '' && bbData.EventDetails[0].createdAt != undefined){
   
-        eventAt.text(moment(bbData.EventDetails[0].time_created).format("YYYY/MM/DD"));
+        eventAt.text(moment(bbData.EventDetails[0].createdAt).format("YYYY/MM/DD"));
     }else{
     eventAt.text(moment(bbData.createdAt).format("YYYY/MM/DD"));
     }
