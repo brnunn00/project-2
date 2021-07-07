@@ -71,16 +71,13 @@ function createBabyRowSelector(bbData){
     };
 
 function getQuanType(type, amount){
-    if (type == 'Feeding' && amount != '' && amount != undefined){
+    if (type == 'Feeding'){
     return (amount+ " Ounces");
     } else{
         return '';
     }
 }
 function typeDisplay(sigh){
-    if (sigh == undefined || sigh == ''){
-        return;
-    }
     return sigh.charAt(0).toUpperCase() + sigh.substring(1)
 }
 function renderBabiesList(rows) {

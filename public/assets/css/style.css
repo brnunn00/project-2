@@ -31,6 +31,7 @@ h4 {
     font-size: 28px;
     line-height: 1.8em;
     font-family: 'Raleway', sans-serif;
+    color: white
 }
 
 button {
@@ -70,3 +71,7 @@ button {
     margin: 10px;
     line-height: 3em;
 } */
+
+#login-navbar {
+    background-color: #17a2b8
+}

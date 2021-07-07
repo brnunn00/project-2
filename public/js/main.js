@@ -3,11 +3,9 @@ $(document).ready(function () {
     var urlParm = getUrlParameter("baby-id");
     //append reports button with baby id attached
     var eleLi = $("#reportLi");
-    var babyRep = $('<a class="nav-link" href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
-    babyRep.addClass("babyRep");
-    var babyRep = $('<a href="/report?baby-id=' +urlParm + '">View Reports</a>');
+    
+    var babyRep = $('<a href="/report?baby-id=' +urlParm + '"><i class="fas fa-border-all"></i> View Reports</a>');
     babyRep.addClass("babyRep nav-link");
-
     babyRep.appendTo(eleLi);
     $.get("/api/getbaby/" + urlParm, function (data) {
         console.log("TCL: getBabyData -> data", data)
@@ -41,16 +39,17 @@ $(document).ready(function () {
 
     $('body').on('click', '#sleepDetailedLogSubmit', function () {
         event.preventDefault();
+<<<<<<< HEAD
+        postManualSleep(($('#sleepType').val() === 'Nap' ? 2 : 8), moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+=======
         postManualSleep($('#sleepType').val(),$('#sleepType').val() === 'Nap' ? 2 : 8, moment($('#sleepDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
+>>>>>>> 6553ff74558399500ee96bfaeb715b945b004a2b
     });
 
     $('body').on('click', '#feedingDetailedLogSubmit', function () {
         event.preventDefault();
         postManualFeedign($('#foodAmount').val() ,$('#foodType').val(), moment($('#foodDetailTime').val().trim()).format('YYYY-MM-DD HH:mm:ss z'));
     });
-
-
-    foodQuickLogNursing
     
 
 
@@ -63,13 +62,6 @@ $(document).ready(function () {
         event.preventDefault();
         postTheEvent("Feeding", 'bottle', 4, false);
     });
-
-    $('body').on('click', '#foodQuickLogNursing', function () {
-        event.preventDefault();
-        postTheEvent("Feeding", 'Nursing', 4, false);
-    });
-
-    
 
     $('body').on('click', '#changeDetailedLogSubmit', function () {
         event.preventDefault();
@@ -117,7 +109,7 @@ $(document).ready(function () {
         });
     }
 
-    function postManualSleep(type,howLong, createdDateTime){
+    function postManualSleep(howLong, createdDateTime){
         $.post('/api/quicklog', {
             eventName: 'Sleep',
             babyId: urlParm
@@ -125,7 +117,7 @@ $(document).ready(function () {
             console.log("TCL: EVENT data: ", data)
             $.post('/api/quicklog/sleepStarted', {
                 eventId: data.id,
-                sleepType: type,
+                // typeOfFeeding: 'Sleep',
                 sleepDuration: howLong,
                 sleepingOrNot: false,
                 createdDateTime: createdDateTime
@@ -245,7 +237,7 @@ $(document).ready(function () {
     function renderEmpty() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert alert-danger");
-        alertDiv.text("No events found.");
+        alertDiv.text("You must add events (again).");
         babyContainer.append(alertDiv);
     }
 

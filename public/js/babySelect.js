@@ -81,84 +81,59 @@ $(document).ready(function () {
     babyContainer.append(alertDiv);
   }
 
-  function babyTodayPage() {
-    // $("#errorModal").empty();
-    $("body").append($("<div>").addClass("container baby mt-4").attr({ id: "babyInfoContainer" }));
-    $("#babyInfoContainer").append($("<div>").addClass("row justify-content-center").attr("id", "firstRow"));
-    // $("babyInfoContainer").append($("<hr>"));
-    $.get("/api/getbabies", function (data) {
-      callNextAPI(data)
-    })
-  }
+  // function babyTodayPage() {
+  //   // $("#errorModal").empty();
+  //   $("body").append($("<div>").addClass("container baby mt-4").attr({ id: "babyInfoContainer" }));
+  //   $("#babyInfoContainer").append($("<div>").addClass("row justify-content-center").attr("id", "firstRow"));
+  //   // $("babyInfoContainer").append($("<hr>"));
+  //   $.get("/api/getbabies", function (data) {
+  //     callNextAPI(data)
+  //   })
+  // }
 
-  function callNextAPI(data) {
+  // function callNextAPI(data) {
 
-    let arrayObj;
-    console.log("TCL: babyTodayPage -> data", data)
+  //   let arrayObj;
+  //   console.log("TCL: babyTodayPage -> data", data)
+  //   for (let i = 0; i < data.length; i++) {
+  //     $.get("/api/getevents/timeSorted/:" + data.account_id, function (results) {
+  //       for (let j = 0; j < results.length; j++) {
+  //         arrayObj = {
+  //           babyName: data[i].baby_name,
+  //           babyEvent: results[j].event_type_name,
+  //           babyEventTime: results[j].EventDetails[0].createdAt,
+  //           babyEventDetail: results[j].EventDetails[0].string_value,
+  //           babyEventDetailQty: results[j].EventDetails[0].integer_value
+  //         }
+  //         // newArray.push(arrayObj);
+  //         createArray(arrayObj)
+  //       }
+  //     });
+  //   }
+  //   sortThisArray(newArray);
+  // }
+  // let newArray = [];
+  // function createArray(arrayObj){
+  //   newArray.push(arrayObj)
+  //   console.log("TCL: createTodayPageForUser -> arrayObj", arrayObj)
     
-    for (let i = 0; i < data.length; i++) {
-      $.get("/api/getevents/:" + data[i].id, function (results) {
-        console.log("TCL: callNextAPI -> results", results)
-        for (let j = 0; j < results.length; j++) {
-          arrayObj = {
-            babyName: data[i].baby_name,
-            babyEvent: results[j].event_type_name,
-            babyEventTime: results[j].EventDetails[0].createdAt,
-            babyEventDetail: results[j].EventDetails[0].string_value,
-            babyEventDetailQty: results[j].EventDetails[0].integer_value
-          }
-          // newArray.push(arrayObj);
-          console.log("TCL: callNextAPI -> arrayObj", arrayObj)
-          createArray(arrayObj)
-        }
-      });
-    }
+  // }
+
+  // function sortThisArray(newArray){
+  //   newArray.sort(function(a,b){
+  //     // return moment(a.babyEventTime) - moment(b.babyEventTime)
+  //     console.log('a.babytimeEvent: '+ a.babyEventTime);
+  //     console.log('b.babytimeEvent: '+ b.babyEventTime);
+  //     return moment.utc(a.babyEventTime).diff(moment.utc(b.babyEventTime));
+  //   })
+  //   createTodayPage(newArray)
+  // }
+
+  // function createTodayPage(newArray) {
+  //   console.log('Inside today Page:::::');
+  //   console.log("TCL: createTodayPage -> newArray", newArray)
     
-    createTodayPage(newArray)
-  }
-  let newArray = [];
-  function createArray(arrayObj) {
-    newArray.push(arrayObj)
-    console.log("TCL: createTodayPageForUser -> arrayObj", arrayObj)
-    sortThisArray(newArray);
-
-    
-  }
-
-  function sortThisArray(newArray) {
-
-    newArray.sort(function (a, b) {
-      // console.log('***********************************************'+ newArray);
-
-      // // return moment(a.babyEventTime) - moment(b.babyEventTime)
-      // console.log('a.babytimeEvent: '+ a.babyEventTime);
-      // console.log('b.babytimeEvent: '+ b.babyEventTime);
-      return moment.utc(a.babyEventTime).diff(moment.utc(b.babyEventTime));
-    })
-  }
-
-  function createTodayPage(newArray) {
-    console.log(newArray);
-    
-    let stringArray = []
-    for (let i = 0; i < newArray.length; i++) {
-      let word1 = newArray[i].babyName;
-      let word2 = whatEvent(newArray[i].babyEvent);
-      let word3 = newArray[i].babyEventDetail;
-      let word4 = newArray[i].babyEventDetailQty;
-    }
-
-  }
-
-  function whatEvent(a){
-    if(a==='Sleep'){
-      return 'slept'
-    }else if(a==='Feeding'){
-      return 'ate'
-    }else if(a==='Change'){
-      return 'changed'
-    }
-  }
+  // }
 
 
 

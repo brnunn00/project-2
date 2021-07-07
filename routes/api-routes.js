@@ -144,15 +144,15 @@ app.get("/api/getevents/:id", function (req, res) {
 // });
 
 // Getting baby events
-app.get("/api/getTimeSorted/:id", function (req, res) {
-  console.log("request is", req)
+app.get("/api/getevents/timeSorted/:id", function (req, res) {
+  // console.log("request is", req)
   if (req.user) {
     db.Event.findAll({
       limit: 5,
       where: {
         baby_id: req.user.id
       },
-      order: [ [ 'createdAt', 'ASC']],
+      order: [ [ 'createdAt', 'DESC']],
       include: [db.EventDetail]
     }).then(function (dbd) {
     
@@ -205,6 +205,7 @@ app.get("/api/getTimeSorted/:id", function (req, res) {
         model: db.Event
       }]
     }).then(function (dbd) {
+    console.log("*****************************ID**********"+id);
         db.Event.findAll({
           where: {
             baby_id: id           
